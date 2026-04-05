@@ -8,11 +8,12 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["amazon"]
+annotation PBI_QueryOrder = ["amazon","amazon (2)"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
 ref table amazon
+ref table 'amazon (2)'
 
 ref cultureInfo en-US
 

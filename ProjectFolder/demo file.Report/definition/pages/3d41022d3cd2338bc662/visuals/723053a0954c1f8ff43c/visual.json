@@ -1,0 +1,84 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "723053a0954c1f8ff43c",
+  "position": {
+    "x": 9.6055210305030236,
+    "y": 0,
+    "z": 0,
+    "height": 639.453257173487,
+    "width": 801.37489740196656,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "amazon (2)"
+                    }
+                  },
+                  "Property": "product_id"
+                }
+              },
+              "queryRef": "amazon (2).product_id",
+              "nativeQueryRef": "product_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "amazon (2)"
+                    }
+                  },
+                  "Property": "review_content"
+                }
+              },
+              "queryRef": "amazon (2).review_content",
+              "nativeQueryRef": "review_content"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "6f2bb01df1b87ba4bf37",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "amazon (2)"
+              }
+            },
+            "Property": "product_id"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4cc70c9ef562bc3a4e78",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "amazon (2)"
+              }
+            },
+            "Property": "review_content"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}
