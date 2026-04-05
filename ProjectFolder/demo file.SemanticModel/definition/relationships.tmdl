@@ -1,0 +1,6 @@
+relationship AutoDetected_41dc2cc9-908c-49d2-acf3-261ead94354b
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'amazon (2)'.product_link
+	toColumn: amazon.product_link
+

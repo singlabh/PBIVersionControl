@@ -1,0 +1,147 @@
+table 'amazon (2)'
+	lineageTag: 3bde5716-6fe9-46f1-bad5-470ebeda2415
+
+	column product_id
+		dataType: string
+		lineageTag: 3ae6ca09-42b6-4ce8-8336-9235e385ee44
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: a379b738-a82b-4f00-a7fa-4a8a071e6872
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 7bb0b947-0f18-4e38-ae9e-5c57862a5ca3
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column discounted_price
+		dataType: decimal
+		formatString: "₹"\ #,0.###############;#,0.###############\ -"₹";"₹"\ #,0.###############
+		lineageTag: 35938672-2ecd-4902-b9b9-51cac4c828eb
+		summarizeBy: sum
+		sourceColumn: discounted_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	column actual_price
+		dataType: decimal
+		formatString: "₹"\ #,0.###############;#,0.###############\ -"₹";"₹"\ #,0.###############
+		lineageTag: 4a238262-6c63-45f3-a167-43fbd7e75247
+		summarizeBy: sum
+		sourceColumn: actual_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	column discount_percentage
+		dataType: double
+		lineageTag: a52988c9-c6b0-4f4e-b503-18890eba6fbf
+		summarizeBy: sum
+		sourceColumn: discount_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rating_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 94c7b2a6-a383-40a8-a57a-9f02b8350a50
+		summarizeBy: sum
+		sourceColumn: rating_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column about_product
+		dataType: string
+		lineageTag: 02d8ed28-fe6e-4bde-ba8a-e8bd0e61ac51
+		summarizeBy: none
+		sourceColumn: about_product
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_id
+		dataType: string
+		lineageTag: 47ab85cc-e96b-437e-8913-234bf365a65d
+		summarizeBy: none
+		sourceColumn: user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_name
+		dataType: string
+		lineageTag: 1811c848-281d-431e-8d6e-7c67d026e640
+		summarizeBy: none
+		sourceColumn: user_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_id
+		dataType: string
+		lineageTag: 36d36eeb-4648-4f62-93f3-2cf9d357beca
+		summarizeBy: none
+		sourceColumn: review_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_title
+		dataType: string
+		lineageTag: 54ac5869-6eec-42b7-9888-1048894b4694
+		summarizeBy: none
+		sourceColumn: review_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_content
+		dataType: string
+		lineageTag: c499a974-f2bb-45e4-9f36-332fcd68e685
+		summarizeBy: none
+		sourceColumn: review_content
+
+		annotation SummarizationSetBy = Automatic
+
+	column img_link
+		dataType: string
+		lineageTag: 2ac2ef66-b5d8-42f3-8597-d01b4ac0b7a9
+		summarizeBy: none
+		sourceColumn: img_link
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_link
+		dataType: string
+		lineageTag: b14238a1-383b-4f12-bb35-3e11f096f360
+		summarizeBy: none
+		sourceColumn: product_link
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'amazon (2)' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Maneesha\OneDrive\Documents\PowerBI\PBIVersionControl\ProjectFolder\amazon.csv"),[Delimiter=",", Columns=16, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"product_id", type text}, {"product_name", type text}, {"category", type text}, {"discounted_price", Currency.Type}, {"actual_price", Currency.Type}, {"discount_percentage", Percentage.Type}, {"rating", type number}, {"rating_count", Int64.Type}, {"about_product", type text}, {"user_id", type text}, {"user_name", type text}, {"review_id", type text}, {"review_title", type text}, {"review_content", type text}, {"img_link", type text}, {"product_link", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"rating"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
