@@ -134,7 +134,7 @@ table amazon
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\Maneesha\OneDrive\Documents\PowerBI\PBIVersionControl\amazon.csv"),[Delimiter=",", Columns=16, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("C:\Users\Maneesha\OneDrive\Documents\PowerBI\PBIVersionControl\ProjectFolder\amazon.csv"),[Delimiter=",", Columns=16, Encoding=65001, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"product_id", type text}, {"product_name", type text}, {"category", type text}, {"discounted_price", Currency.Type}, {"actual_price", Currency.Type}, {"discount_percentage", Percentage.Type}, {"rating", type number}, {"rating_count", Int64.Type}, {"about_product", type text}, {"user_id", type text}, {"user_name", type text}, {"review_id", type text}, {"review_title", type text}, {"review_content", type text}, {"img_link", type text}, {"product_link", type text}}),
 				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"rating"})
